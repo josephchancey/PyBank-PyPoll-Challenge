@@ -11,7 +11,9 @@ Script must analyze:
 - The greatest increase in profits (date and amount) over the entire period.
 - The greatest decrease in losses (date and amount) over the entire period.
 
-  
+### PyBank Sumary Results
+![Summary Image](https://i.imgur.com/nGbHwW6.png)
+
 ___
 
 ### PyPoll
@@ -24,3 +26,7 @@ Script must analyze:
 - The percentage of votes each candidate won.
 - The total number of votes each candidate won.
 - The winner of the election based on popular vote.
+
+
+### PyPoll Sumary Results
+![Summary Image](https://i.imgur.com/sAxsiC7.png)

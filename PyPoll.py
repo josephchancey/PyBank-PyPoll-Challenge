@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[5]:
+# In[ ]:
 
 
 # Python 3 PyPoll Challenge Script 
@@ -34,7 +34,27 @@ with open(poll_csv) as election_data:
     
     # Identify header through 'next()' function
     header = next(reader)
-    print(header)
+    
+    # Loader animation
+    for i in reader:
+        # Loading Dots
+        print(". ", end="")
+        
+        # Total Vote Count Adder
+        total_votes = total_votes + 1
+        
+        # Candidate Name From Row
+        candidate_name = i[2]
+        
+        # Condition for Candidate Name Not Being In Options of Existing Candidates
+        # .append every name + total their votes
+        if candidate_name not in candidate_options:
+            candidate_options.append(candidate_name)
+            
+            # Count Candidate Votes
+            candidate_votes[candidate_name] = 0
+        candidate_votes[candidate_name] = candidate_votes[candidate_name] + 1
+            
 
 
 # In[ ]:

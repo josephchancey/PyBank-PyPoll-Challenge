@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[8]:
+# In[16]:
 
 
 # Python 3 PyBank Challenge Script 
@@ -20,7 +20,9 @@ months_total = 0
 month_change = []
 net_change_li = []
 net_total = 0
+# Set Value Minimums
 highest_increase = ["", 0]
+#Set Value Ceiling ~ Not Ideal If Values Cross Beyond This Ceiling
 highest_decrease = ["", 9999999999999]
 
 # Loop through dataset to read it
@@ -47,9 +49,37 @@ with open(budget_csv) as bank_data:
         net_change = int(i[1]) - last_net
         last_net = int(i[1])
         net_change_li.append(net_change)
-        print(net_change_li)
+        month_change.append(i[0])
         
-        
+        # Greatest Incerase
+        if net_change > highest_increase[1]:
+            highest_increase[0] = i[0]
+            highest_increase[1] = net_change
+            
+        # Greatest Decrease
+        if net_change < highest_decrease[1]:
+            highest_decrease[0] = i[0]
+            highest_decrease[1] = net_change
+            
+    # Average Out
+    net_mo_avg = sum(net_change_li) / len(net_change_li)
+    
+    #print
+    summary_out = (
+        f"\nPyBank Financial Analysis\n"
+        f"----------------------------\n"
+        f"Total Months: {months_total}\n"
+        f"Total $: {net_total}\n"
+        f"Avg. Change: ${net_mo_avg:.2f}\n"
+        #################################### Date                 # Total
+        f"Greatest Profit Increase: {highest_increase[0]}, (${highest_increase[1]})\n"
+        f"Greatest Profit Decrease: {highest_decrease[0]}, (${highest_decrease[1]})"
+                  )
+
+output_file = os.path.join(".", "Resources", "PyBank_Budget_Analysis.txt")
+with open(output_file, "w") as txt_file:
+    txt_file.write(summary_out)
+    print("File Saved. Tasks Completed.")
 
 
 # In[ ]:
